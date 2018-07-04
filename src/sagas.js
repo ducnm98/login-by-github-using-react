@@ -11,7 +11,7 @@ function* loginViaGithub(action) {
   yield put(receiveLogin(data.user));
 }
 
-function* logoutViaGithub() {
+function* logoutViaGithub(action) {
   const data = {};
   yield put(receiveLogout(data))
 }
