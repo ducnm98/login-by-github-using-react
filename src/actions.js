@@ -5,5 +5,6 @@ export const RECEIVE_LOGOUT = "RECEIVE_LOGOUT";
 
 export const requestLogin = provider => ({ type: REQUEST_LOGIN, payload: provider });
 export const receiveLogin = data => ({ type: RECEIVE_LOGIN, payload: data });
+
 export const requestLogout = () => ({ type: REQUEST_LOGOUT});
 export const receiveLogout = data => ({ type: RECEIVE_LOGOUT, payload: data});

@@ -11,12 +11,12 @@ export default (state = intialState, action) => {
       return {
         ...state,
         user: data
-      }
+      }; 
     case RECEIVE_LOGOUT:
       return {
         ...state,
         user: null
-      }
+      };
     
     default:
       return state;

@@ -1,13 +1,13 @@
 import { call, put, takeEvery, takeLatest } from "redux-saga/effects";
 
-import { requestLogin, receiveLogin, requestLogout, receiveLogout } from "./actions";
+import { REQUEST_LOGIN, receiveLogin, REQUEST_LOGOUT, receiveLogout } from "./actions";
 
 import { authenticate } from './oauthFetchData';
 
 // worker Saga: will be fired on USER_FETCH_REQUESTED actions
 function* loginViaGithub(action) {
+  console.log('action.payload', action)
   const data = yield call(authenticate, action.payload);
-  console.log(data.user)
   yield put(receiveLogin(data.user));
 }
 
@@ -24,6 +24,6 @@ function* logoutViaGithub(action) {
   and only the latest one will be run.
 */
 export default function* mySaga() {
-  yield takeLatest(requestLogin, loginViaGithub);
-  yield takeLatest(requestLogout, logoutViaGithub);
+  yield takeEvery(REQUEST_LOGIN, loginViaGithub);
+  yield takeEvery(REQUEST_LOGOUT, logoutViaGithub);
 }

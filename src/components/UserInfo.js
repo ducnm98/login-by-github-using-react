@@ -10,16 +10,16 @@ class UserInfo extends Component {
   }
 
   authenticate = (provider) => {
-    console.log(provider)
     this.props.requestLogin(provider);
-  }
+  };
 
-  logout = () => {
+  logOut = () => {
     this.props.requestLogout();
-  }
+  };
 
   render() {
-    const logout = <button onClick={this.logout}>Log Out!</button>;
+    const logout = <button onClick={this.logOut}>Log Out!</button>;
+
     if (!this.props.user) {
       return <Login authenticate={this.authenticate} />;
     }
@@ -38,7 +38,6 @@ class UserInfo extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state)
   return {
     user: state.oAuth.user
   };
