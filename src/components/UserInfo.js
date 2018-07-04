@@ -9,8 +9,9 @@ class UserInfo extends Component {
     super(props);
   }
 
-  authenticate = () => {
-    this.props.requestLogin();
+  authenticate = (provider) => {
+    console.log(provider)
+    this.props.requestLogin(provider);
   }
 
   logout = () => {
