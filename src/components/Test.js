@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import Login from "./Login";
-import { requestLogin, requestLogout } from "../actions";
+import { requestTakeEvery, requestTakeLatest } from "../actions";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
@@ -9,24 +9,23 @@ class Test extends Component {
     super(props);
   }
 
-  authenticate = (provider) => {
-    this.props.requestLogin(provider);
+  takeEvery = () => {
+    let data = this.props.counter;
+    this.props.requestTakeEvery(data);
   };
 
-  logOut = () => {
-    this.props.requestLogout();
+  takeLatest = () => {
+    let data = this.props.counter;
+    this.props.requestTakeLatest(data);
   };
 
   render() {
     return (
       <div>
-        <label>Email: {this.props.user.email}</label>
+        <h1>{this.props.counter}</h1>
         <br />
-        <label>Name: {this.props.user.name} </label>
-        <br />
-        <img src={this.props.user.photoURL} />
-        <br />
-        {logout}
+        <button onClick={this.takeEvery}>Take Every</button>
+        <button onClick={this.takeLatest}>Take Latest</button>
       </div>
     );
   }
@@ -34,7 +33,7 @@ class Test extends Component {
 
 const mapStateToProps = state => {
   return {
-    counter: state.test.counter
+    counter: state.test.counter,
   };
 };
 // email: state.email,
@@ -42,7 +41,7 @@ const mapStateToProps = state => {
 // picture: state.photoURL,
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ requestLogin, requestLogout }, dispatch);
+  bindActionCreators({ requestTakeEvery, requestTakeLatest }, dispatch);
 
 export default connect(
   mapStateToProps,
