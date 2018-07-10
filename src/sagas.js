@@ -26,20 +26,20 @@ function* logoutViaGithub(action) {
 }
 
 function* takeEveryAction(action) {
-  console.log("take every action begin")
-  setTimeout(function() {
-    console.log("take every action end")
-  }, 2000);
   let data = action.payload + 1;
+  console.log("take every action begin ", data)
+  setTimeout(function() {
+    console.log("take every action end ", data)
+  }, 2000);
   yield put(receiveTakeEvery(data))
 }
 
 function* takeLatestAction(action) {
-  console.log("take latest action begin")
-  setTimeout(function() {
-    console.log("take latest action end")
-  }, 2000);
   let data = action.payload - 2;
+  console.log("take latest action begin ", data)
+  setTimeout(function() {
+    console.log("take latest action end ", data)
+  }, 2000);
   yield put(receiveTakeLatest(data))
 }
 
