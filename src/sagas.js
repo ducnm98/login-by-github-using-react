@@ -1,6 +1,15 @@
 import { call, put, takeEvery, takeLatest } from "redux-saga/effects";
 
-import { REQUEST_LOGIN, receiveLogin, REQUEST_LOGOUT, receiveLogout } from "./actions";
+import { 
+  REQUEST_LOGIN, 
+  receiveLogin, 
+  REQUEST_LOGOUT, 
+  receiveLogout,
+  REQUEST_TAKE_EVERY,
+  receiveTakeEvery,
+  REQUEST_TAKE_LATEST,
+  receiveTakeLatest,
+} from "./actions";
 
 import { authenticate } from './oauthFetchData';
 
@@ -16,6 +25,18 @@ function* logoutViaGithub(action) {
   yield put(receiveLogout(data))
 }
 
+function* takeEveryAction(action) {
+  console.log(action);
+  const data = 0;
+  yield put(receiveTakeEvery(data))
+}
+
+function* takeLatestAction(action) {
+  console.log(action);
+  const data = 0;
+  yield put(receiveTakeLatest(data))
+}
+
 /*
   Alternatively you may use takeLatest.
 
@@ -26,4 +47,6 @@ function* logoutViaGithub(action) {
 export default function* mySaga() {
   yield takeEvery(REQUEST_LOGIN, loginViaGithub);
   yield takeEvery(REQUEST_LOGOUT, logoutViaGithub);
+  yield takeLatest(REQUEST_TAKE_LATEST, takeLatestAction);
+  yield takeEvery(REQUEST_TAKE_EVERY, takeEveryAction);
 }
